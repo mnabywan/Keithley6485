@@ -1,0 +1,118 @@
+ReplyTimeout = 1000;
+InTerminator = "\r";
+OutTerminator = "\r";
+
+# Identification string
+getIDN {
+    out "*IDN?";
+    in "%\$1[^\r\n]";
+    ExtraInput = Ignore;
+}
+
+# Zero check
+setZeroCheck {
+    out "SYST:ZCH %d";
+    in "%d";
+}
+
+getZeroCheck {
+    out "SYST:ZCH?";
+    in "%d";
+}
+
+# Auto range
+setAutoRange {
+    out "RANG:AUTO %d";
+    in "%d";
+}
+
+getAutoRange {
+    out "RANG:AUTO?";
+    in "%d";
+}
+
+# Range
+setRange {
+    out "RANG 2E-%d";
+    @init { out "RANG?"; in "%*[^E]E-%d"; }
+}
+
+getRange {
+    out "RANG?";
+    in "%*[^E]E-%d";
+}
+
+# Read current
+readCurrent {
+    ReplyTimeout = 5000;
+    out "READ?";
+    in "%f";
+    @init { out "FORM:ELEM READ;CONF:CURR:DC"; }
+}
+
+# Integration Rate
+setIntegrationRate{
+    out "NPLC %f";
+    in "%f";
+}
+
+getIntegrationRate {
+    out "NPLC?";
+    in "%f";
+}
+
+# Median filter
+setMedianFilter{
+    out "MED %d";
+    in "%d";
+}
+
+getMedianFilter {
+    out "MED?";
+    in "%d";
+}
+
+# Median filter rank
+setMedianFilterRank{
+    out "MED:RANK %d";
+    in "%d";
+}
+
+getMedianFilterRank {
+    out "MED:RANK?";
+    in "%d";
+}
+
+# Digital filter
+setDigitalFilter{
+    out "AVER %d";
+    in "%d";
+}
+
+getDigitalFilter {
+    out "AVER?";
+    in "%d";
+}
+
+# Digital filter count
+setDigitalFilterCount{
+    out "AVER:COUN %d";
+    in "%d";
+}
+
+getDigitalFilterCount {
+    out "AVER:COUN?";
+    in "%d";
+}
+
+# Digital filter control
+setDigitalFilterControl{
+    out "AVER:TCON %{MOV|REP}";
+    @init { out "AVER:TCON?"; in "%{MOV|REP}"; }
+}
+
+getDigitalFilterControl {
+    out "AVER:TCON?";
+    in "%{MOV|REP}";
+}
+

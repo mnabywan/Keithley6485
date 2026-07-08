@@ -1,0 +1,228 @@
+record(waveform, "$(P)$(R)IDN"){
+    field(DESC, "Identification string")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getIDN(119) $(PORT)")
+    field(PINI, "YES")
+    field(FTVL, "CHAR")
+    field(NELM, "120")
+}
+
+# Zero check
+record(bo, "$(P)$(R)ZeroCheck") {
+    field(DESC, "Set auto range")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setZeroCheck $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)ZeroCheck-RB")
+}
+
+record(bi, "$(P)$(R)ZeroCheck-RB") {
+    field(DESC, "Get zero check")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getZeroCheck $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(PINI, "YES")
+}
+
+# Auto range
+record(bo, "$(P)$(R)AutoRange") {
+    field(DESC, "Set auto range")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setAutoRange $(PORT)")
+    field(ZNAM, "Fixed")
+    field(ONAM, "Auto")
+    field(FLNK, "$(P)$(R)AutoRange-RB")
+}
+
+record(bi, "$(P)$(R)AutoRange-RB") {
+    field(DESC, "Get auto range")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getAutoRange $(PORT)")
+    field(ZNAM, "Fixed")
+    field(ONAM, "Auto")
+    field(PINI, "YES")
+}
+
+record(mbbo, "$(P)$(R)Range") {
+    field(DESC, "Set range")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setRange $(PORT)")
+    field(ZRVL, "9")
+    field(ZRST, "2 nA")
+    field(ONVL, "8")
+    field(ONST, "20 nA")
+    field(TWVL, "7")
+    field(TWST, "200 nA")
+    field(THVL, "6")
+    field(THST, "2 uA")
+    field(FRVL, "5")
+    field(FRST, "20 uA")
+    field(FVVL, "4")
+    field(FVST, "200 uA")
+    field(SXVL, "3")
+    field(SXST, "2 mA")
+    field(SVVL, "2")
+    field(SVST, "20 mA")
+    field(FLNK, "$(P)$(R)Range-RB")
+}
+
+record(mbbi, "$(P)$(R)Range-RB") {
+    field(DESC, "Get range")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getRange $(PORT)")
+    field(ZRVL, "9")
+    field(ZRST, "2 nA")
+    field(ONVL, "8")
+    field(ONST, "20 nA")
+    field(TWVL, "7")
+    field(TWST, "200 nA")
+    field(THVL, "6")
+    field(THST, "2 uA")
+    field(FRVL, "5")
+    field(FRST, "20 uA")
+    field(FVVL, "4")
+    field(FVST, "200 uA")
+    field(SXVL, "3")
+    field(SXST, "2 mA")
+    field(SVVL, "2")
+    field(SVST, "20 mA")
+    field(PINI, "YES")
+}
+
+record(ai, "$(P)$(R)Current-R") {
+    field(DESC, "Read current")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) readCurrent $(PORT)")
+    field(EGU,  "A")
+    field(PREC, "5")
+}
+
+# Integration rate
+record(ao, "$(P)$(R)IntegrationRate") {
+    field(DESC, "Set integration rate")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setIntegrationRate $(PORT)")
+    field(EGU,  "Cycles")
+    field(PREC, "2")
+    field(LOPR, "0")
+    field(HOPR, "60")
+    field(DRVL, "0.01")
+    field(DRVH, "60")
+    field(FLNK, "$(P)$(R)IntegrationRate-RB")
+}
+
+record(ai, "$(P)$(R)IntegrationRate-RB") {
+    field(DESC, "Get integration rate")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getIntegrationRate $(PORT)")
+    field(EGU,  "Cycles")
+    field(PREC, "2")
+    field(LOPR, "0")
+    field(HOPR, "60")
+    field(PINI, "YES")
+}
+
+# Filters
+# Median filter
+record(bo, "$(P)$(R)MedianFilt") {
+    field(DESC, "Set median filter")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setMedianFilter $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)MedianFilt-RB")
+}
+
+record(bi, "$(P)$(R)MedianFilt-RB") {
+    field(DESC, "Get median filter")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getMedianFilter $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(PINI, "YES")
+}
+
+# Median filter rank
+record(ao, "$(P)$(R)MedianFiltRank") {
+    field(DESC, "Set median filter rank")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setMedianFilterRank $(PORT)")
+    field(LOPR, "1")
+    field(HOPR, "5")
+    field(PREC, "0")
+    field(FLNK, "$(P)$(R)MedianFiltRank-RB")
+}
+
+record(ai, "$(P)$(R)MedianFiltRank-RB") {
+    field(DESC, "Get median filter rank")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getMedianFilterRank $(PORT)")
+    field(LOPR, "1")
+    field(HOPR, "5")
+    field(PREC, "0")
+    field(PINI, "YES")
+}
+
+# Digital filter
+record(bo, "$(P)$(R)DigitalFilt") {
+    field(DESC, "Set digital filter")
+    field(DTYP, "stream")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(OUT,  "@$(PROTO_FILE) setDigitalFilter $(PORT)")
+    field(FLNK, "$(P)$(R)DigitalFilt-RB")
+}
+
+record(bi, "$(P)$(R)DigitalFilt-RB") {
+    field(DESC, "Get digital filter")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getDigitalFilter $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(PINI, "YES")
+}
+
+# Digital filter count
+record(ao, "$(P)$(R)DigitalFiltCnt") {
+    field(DESC, "Set digital filter count")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setDigitalFilterCount $(PORT)")
+    field(LOPR, "2")
+    field(HOPR, "100")
+    field(PREC, "0")
+    field(FLNK, "$(P)$(R)DigitalFiltCnt-RB")
+}
+
+record(ai, "$(P)$(R)DigitalFiltCnt-RB") {
+    field(DESC, "Get digital filter count")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getDigitalFilterCount $(PORT)")
+    field(LOPR, "2")
+    field(HOPR, "100")
+    field(PREC, "0")
+    field(PINI, "YES")
+}
+
+record(mbbo, "$(P)$(R)DigitalFiltCtrl") {
+    field(DESC, "Set digital filter control")
+    field(DTYP, "stream")
+    field(OUT,  "@$(PROTO_FILE) setDigitalFilterControl $(PORT)")
+    field(ZRVL, "0")
+    field(ZRST, "Moving")
+    field(ONVL, "1")
+    field(ONST, "Repeat")
+    field(FLNK, "$(P)$(R)DigitalFiltCtrl-RB")
+}
+
+record(mbbi, "$(P)$(R)DigitalFiltCtrl-RB") {
+    field(DESC, "Set digital filter control")
+    field(DTYP, "stream")
+    field(INP,  "@$(PROTO_FILE) getDigitalFilterControl $(PORT)")
+    field(ZRVL, "0")
+    field(ZRST, "Moving")
+    field(ONVL, "1")
+    field(ONST, "Repeat")
+    field(PINI, "YES")
+}
