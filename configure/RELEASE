@@ -29,6 +29,9 @@
 #STREAM = /path/to/stream
 #ASYN = /path/to/asyn
 
+# Path to PVXS if needed
+#PVXS = /path/to/pvxs
+
 # EPICS_BASE should appear last so earlier modules can override stuff:
 #EPICS_BASE = /path/to/base
 

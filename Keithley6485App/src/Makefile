@@ -28,6 +28,14 @@ Keithley6485_DBD += drvAsynIPPort.dbd
 Keithley6485_LIBS += stream
 Keithley6485_LIBS += asyn
 
+# Link QSRV (pvAccess Server) if available
+ifdef EPICS_QSRV_MAJOR_VERSION
+    Keithley6485_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
+    Keithley6485_LIBS += pvxsIoc pvxs
+    Keithley6485_DBD += PVAServerRegister.dbd
+    Keithley6485_DBD += pvxsIoc.dbd
+endif
+
 # Keithley6485_registerRecordDeviceDriver.cpp derives from Keithley6485.dbd
 Keithley6485_SRCS += Keithley6485_registerRecordDeviceDriver.cpp
 
