@@ -26,16 +26,11 @@
 # the CONFIG_SITE file.
 
 # Variables and paths to dependent modules:
-#MODULES = /path/to/modules
-#MYMODULE = $(MODULES)/my-module
-
-# If using the sequencer, point SNCSEQ at its top directory:
-SUPPORT = /home/mateusznabywaniec/assemble_synApps/git/support
-STREAM = $(SUPPORT)/StreamDevice-2-8-24
-ASYN = $(SUPPORT)/asyn-R4-44-2
+#STREAM = /path/to/stream
+#ASYN = /path/to/asyn
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
-EPICS_BASE = /home/mateusznabywaniec/epics-base
+#EPICS_BASE = /path/to/base
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
